@@ -1,0 +1,147 @@
+Breakpoint 1 at 0x4008a3: file pa01.c, line 78.
+Breakpoint 2 at 0x40099a: file pa01.c, line 104.
+Breakpoint 3 at 0x400b5d: file pa01.c, line 141.
+Breakpoint 4 at 0x400d7b: file pa01.c, line 183.
+Breakpoint 5 at 0x400f1c: file pa01.c, line 220.
+Starting program: /home/tools/a/jang30/ece264/PA01/pa01 
+
+Breakpoint 5, main (argc=1, argv=0x7fffffffe668) at pa01.c:223
+223	    printf("Welcome to ECE264, we are working on PA01.\n\n");
+Missing separate debuginfos, use: debuginfo-install glibc-2.12-1.132.el6.x86_64
+$1 = 1
+226	    test_00_arraySum();
+227	    test_01_arrayCountNegative();
+
+Breakpoint 1, test_01_arrayCountNegative () at pa01.c:81
+81	    printf("Testing arrayCountNegative(...)\n");
+83	    int array1[] = { 1, 4, -5, 4 };
+84	    int len1 = 4;
+85	    test_arrayCountNegative(array1, len1, 1);
+88	    int len2 = 0;
+89	    test_arrayCountNegative(array2, len2, 0);
+91	    int array3[] = { 0, 1, 2, 3, 4 };
+Argument required (starting display address).
+Continuing.
+
+Breakpoint 2, test_arrayIsIncreasing (array=0x7fffffffe530, len=5, expected=1) at pa01.c:107
+107	    printArray(array, len);
+Continuing.
+
+Breakpoint 2, test_arrayIsIncreasing (array=0x7fffffffe530, len=0, expected=1) at pa01.c:107
+107	    printArray(array, len);
+Continuing.
+
+Breakpoint 2, test_arrayIsIncreasing (array=0x7fffffffe510, len=8, expected=0) at pa01.c:107
+107	    printArray(array, len);
+108	    int result = arrayIsIncreasing(array, len);
+109	    printf(". result = %d, expected = %d.", result, expected);
+Continuing.
+
+Breakpoint 2, test_arrayIsIncreasing (array=0x7fffffffe500, len=3, expected=1) at pa01.c:107
+107	    printArray(array, len);
+108	    int result = arrayIsIncreasing(array, len);
+109	    printf(". result = %d, expected = %d.", result, expected);
+110	    if(result != expected)
+112	    printf("\n");
+113	}
+Continuing.
+
+Breakpoint 2, test_arrayIsIncreasing (array=0x7fffffffe4e0, len=6, expected=0) at pa01.c:107
+107	    printArray(array, len);
+The program being debugged has been started already.
+Start it from the beginning? (y or n) Program not restarted.
+Continuing.
+
+Breakpoint 3, test_arrayIndexRFind (needle=8, array=0x7fffffffe510, len=5, expected=-1) at pa01.c:144
+144	    printArray(array, len);
+Continuing.
+
+Breakpoint 3, test_arrayIndexRFind (needle=9, array=0x7fffffffe510, len=0, expected=-1) at pa01.c:144
+144	    printArray(array, len);
+145	    int index = arrayIndexRFind(needle, array, len);
+146	    printf(". result = %d, expected = %d.", index, expected);
+147	    if(index != expected)
+149	    printf("\n");
+150	}
+Continuing.
+
+Breakpoint 3, test_arrayIndexRFind (needle=2, array=0x7fffffffe4f0, len=5, expected=2) at pa01.c:144
+144	    printArray(array, len);
+Run till exit from #0  test_arrayIndexRFind (needle=2, array=0x7fffffffe4f0, len=5, expected=2) at pa01.c:144
+test_03_arrayIndexRFind () at pa01.c:171
+171	    int array4[] = { -10, 10, 0, 10, -10 };
+Run till exit from #0  test_03_arrayIndexRFind () at pa01.c:171
+
+Breakpoint 3, test_arrayIndexRFind (needle=10, array=0x7fffffffe4d0, len=5, expected=3) at pa01.c:144
+144	    printArray(array, len);
+Run till exit from #0  test_arrayIndexRFind (needle=10, array=0x7fffffffe4d0, len=5, expected=3) at pa01.c:144
+test_03_arrayIndexRFind () at pa01.c:176
+176	    int array5[] = { 9, 8, 1, 5, 7, 10};
+Continuing.
+
+Breakpoint 3, test_arrayIndexRFind (needle=9, array=0x7fffffffe4b0, len=6, expected=0) at pa01.c:144
+144	    printArray(array, len);
+145	    int index = arrayIndexRFind(needle, array, len);
+146	    printf(". result = %d, expected = %d.", index, expected);
+147	    if(index != expected)
+149	    printf("\n");
+150	}
+test_03_arrayIndexRFind () at pa01.c:181
+181	    printf("\n");
+182	}
+Undefined command: "nn".  Try "help".
+main (argc=1, argv=0x7fffffffe668) at pa01.c:230
+230	    test_04_arrayFindSmallest();
+
+Breakpoint 4, test_arrayFindSmallest (array=0x7fffffffe530, len=4, expected=2) at pa01.c:186
+186	    printArray(array, len);
+187	    int smallest = arrayFindSmallest(array, len);
+188	    printf(". result = %d, expected = %d.", smallest, expected);
+189	    if(smallest != expected)
+191	    printf("\n");
+192	}
+test_04_arrayFindSmallest () at pa01.c:203
+203	    int len2 = 0;
+204	    test_arrayFindSmallest(array2, len2, 0);
+
+Breakpoint 4, test_arrayFindSmallest (array=0x7fffffffe530, len=0, expected=0) at pa01.c:186
+186	    printArray(array, len);
+187	    int smallest = arrayFindSmallest(array, len);
+188	    printf(". result = %d, expected = %d.", smallest, expected);
+189	    if(smallest != expected)
+Continuing.
+
+Breakpoint 4, test_arrayFindSmallest (array=0x7fffffffe520, len=3, expected=0) at pa01.c:186
+186	    printArray(array, len);
+187	    int smallest = arrayFindSmallest(array, len);
+188	    printf(". result = %d, expected = %d.", smallest, expected);
+189	    if(smallest != expected)
+191	    printf("\n");
+192	}
+test_04_arrayFindSmallest () at pa01.c:210
+210	    int array4[] = { 1, -5, 2, 4, -5, 2 };
+211	    int len4 = 6;
+212	    test_arrayFindSmallest(array4, len4, 1);
+Undefined command: "nn".  Try "help".
+
+Breakpoint 4, test_arrayFindSmallest (array=0x7fffffffe500, len=6, expected=1) at pa01.c:186
+186	    printArray(array, len);
+Run till exit from #0  test_arrayFindSmallest (array=0x7fffffffe500, len=6, expected=1) at pa01.c:186
+test_04_arrayFindSmallest () at pa01.c:214
+214	    int array5[] = { -10, -20, -30, -40, -50 };
+215	    int len5 = 5;
+216	    test_arrayFindSmallest(array5, len5, 4);
+Continuing.
+
+Breakpoint 4, test_arrayFindSmallest (array=0x7fffffffe4e0, len=5, expected=4) at pa01.c:186
+186	    printArray(array, len);
+187	    int smallest = arrayFindSmallest(array, len);
+188	    printf(". result = %d, expected = %d.", smallest, expected);
+189	    if(smallest != expected)
+191	    printf("\n");
+Run till exit from #0  test_arrayFindSmallest (array=0x7fffffffe4e0, len=5, expected=4) at pa01.c:191
+test_04_arrayFindSmallest () at pa01.c:218
+218	    printf("\n");
+Continuing.
+
+Program exited normally.
