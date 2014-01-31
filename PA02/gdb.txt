@@ -1,0 +1,9 @@
+No symbol table is loaded.  Use the "file" command.
+Make breakpoint pending on future shared library load? (y or [n]) No symbol table is loaded.  Use the "file" command.
+Make breakpoint pending on future shared library load? (y or [n]) Starting program: /home/tools/a/jang30/ece264/solutions/ECE264/PA02/pa02 
+
+Program exited normally.
+Missing separate debuginfos, use: debuginfo-install glibc-2.12-1.132.el6.x86_64
+$1 = {<text variable, no debug info>} 0x3601233f50 <atoi>
+No symbol table is loaded.  Use the "file" command.
+$2 = {<text variable, no debug info>} 0x400cb6 <my_atoi>

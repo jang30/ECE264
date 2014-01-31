@@ -13,16 +13,10 @@ size_t my_strlen(const char * str)
 int my_countchar(const char * str, char ch)
 {
   int count = 0;
-  if(*str == ch) 
-	{
-	  count ++;
-	}
-  while ( *str++)
+  while (*str)
     {
-      if(*str == ch) 
-	{
-	  count ++;
-	}
+      if(*str == ch) count ++;
+      str++;
     }
   return count;
 }
@@ -30,7 +24,7 @@ int my_countchar(const char * str, char ch)
 char * my_strchr(const char * str, int ch)
 {
   if(*str == ch) return (char*) str;
-  while (*str++)
+   while (*str++)
     {
       if(*str == ch) return (char*) str;
     }
@@ -54,7 +48,6 @@ char * my_strrchr(const char * str, int ch)
     {
       return (char*) str;
     }
-  else
       return save;
 }
 
