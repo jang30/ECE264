@@ -42,6 +42,11 @@ int main(int argc, char * * argv)
     printf("my_strchr(\"%s\", 'o') = %s\n", s2, my_strchr(s2, 'o'));
     printf("my_strchr(\"%s\", '\\0') = %s\n", s3, my_strchr(s3, '\0'));
 
+    // -- my strrchr
+    printf("my_strrchr(\"%s\", 'l') = %s\n", s1, my_strrchr(s1, 'l'));
+    printf("my_strrchr(\"%s\", 'o') = %s\n", s2, my_strrchr(s2, 'o'));
+    printf("my_strrchr(\"%s\", '\\0') = %s\n", s3, my_strrchr(s3, '\0'));
+
     // -- my_strstr, should be: "World!", "Hello World!", "(null)"
     printf("my_strstr(\"%s\", \"World\") = %s\n", s1, my_strstr(s1, "World"));
     printf("my_strstr(\"%s\", \"\") = %s\n", s1, my_strstr(s1, ""));
@@ -61,9 +66,24 @@ int main(int argc, char * * argv)
     // look at my_strcpy for an example, and go from there.
 
     // -- my_isspace. You will have to do this for yourself.
+    printf("my_isspace = %d\n", my_isspace(' '));
+    printf("my_isspace = %d\n", my_isspace('\f'));
+    printf("my_isspace = %d\n", my_isspace('\n'));
+    printf("my_isspace = %d\n", my_isspace('\r'));
+    printf("my_isspace = %d\n", my_isspace('\t'));
+    printf("my_isspace = %d\n", my_isspace('\v'));
+    printf("my_isspace = %d\n", my_isspace('N'));
+    printf("my_isspace = %d\n", my_isspace(9));
+
 
     // -- my_atoi. You will have to do this for yourself/
-
+    printf("my_atoi = %d\n", my_atoi("0"));
+    printf("my_atoi = %d\n", my_atoi(""));
+    printf("my_atoi = %d\n", my_atoi("do you wanna build 15 snowman?"));
+    printf("my_atoi = %d\n", my_atoi("\t\n -6 useless characters"));
+    printf("my_atoi = %d\n", my_atoi("1998"));
+    printf("my_atoi = %d\n", my_atoi(" 1994"));
+    
     return EXIT_SUCCESS;
 }
 
