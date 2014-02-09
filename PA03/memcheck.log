@@ -1,0 +1,81 @@
+==16568== Memcheck, a memory error detector
+==16568== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==16568== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==16568== Command: ./pa03
+==16568== Parent PID: 7222
+==16568== 
+--16568-- 
+--16568-- Valgrind options:
+--16568--    --tool=memcheck
+--16568--    --leak-check=full
+--16568--    --verbose
+--16568--    --log-file=memcheck.log
+--16568-- Contents of /proc/version:
+--16568--   Linux version 2.6.32-431.3.1.el6.x86_64 (mockbuild@x86-003.build.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Fri Dec 13 06:58:20 EST 2013
+--16568-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--16568-- Page sizes: currently 4096, max supported 4096
+--16568-- Valgrind library directory: /usr/lib64/valgrind
+--16568-- Reading syms from /home/tools/a/jang30/ece264/solutions/ECE264/PA03/pa03
+--16568-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--16568--    object doesn't have a dynamic symbol table
+--16568-- Reading syms from /lib64/ld-2.12.so
+--16568-- Scheduler: using generic scheduler lock implementation.
+--16568-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==16568== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-16568-by-jang30-on-ecelinux41.ecn.purdue.edu
+==16568== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-16568-by-jang30-on-ecelinux41.ecn.purdue.edu
+==16568== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-16568-by-jang30-on-ecelinux41.ecn.purdue.edu
+==16568== 
+==16568== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==16568== don't want to do, unless you know exactly what you're doing,
+==16568== or are doing some strange experiment):
+==16568==   /usr/lib64/valgrind/../../bin/vgdb --pid=16568 ...command...
+==16568== 
+==16568== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==16568==   /path/to/gdb ./pa03
+==16568== and then give GDB the following command
+==16568==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=16568
+==16568== --pid is optional if only one valgrind process is running
+==16568== 
+--16568-- REDIR: 0x3ae6e17530 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--16568-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--16568-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--16568-- REDIR: 0x3ae6e173a0 (index) redirected to 0x4a07bf0 (index)
+--16568-- REDIR: 0x3ae6e17420 (strcmp) redirected to 0x4a08530 (strcmp)
+--16568-- Reading syms from /lib64/libc-2.12.so
+--16568-- REDIR: 0x3ae7284fb0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16568-- REDIR: 0x3ae7287270 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16568-- REDIR: 0x3ae7282f20 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--16568-- REDIR: 0x3ae7281440 (__GI_strlen) redirected to 0x4a07f70 (__GI_strlen)
+--16568-- REDIR: 0x3ae72847e0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--16568-- REDIR: 0x3ae727f910 (index) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16568-- REDIR: 0x3ae73284e0 (__strchr_sse42) redirected to 0x4a07b00 (index)
+--16568-- REDIR: 0x3ae727a920 (malloc) redirected to 0x4a0696c (malloc)
+--16568-- REDIR: 0x3ae7289950 (memcpy) redirected to 0x4a08b20 (memcpy)
+--16568-- REDIR: 0x3ae728add0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--16568-- REDIR: 0x3ae727b800 (free) redirected to 0x4a06369 (free)
+==16568== 
+==16568== HEAP SUMMARY:
+==16568==     in use at exit: 58 bytes in 5 blocks
+==16568==   total heap usage: 5 allocs, 0 frees, 58 bytes allocated
+==16568== 
+==16568== Searching for pointers to 5 not-freed blocks
+==16568== Checked 64,264 bytes
+==16568== 
+==16568== 58 (32 direct, 26 indirect) bytes in 1 blocks are definitely lost in loss record 3 of 3
+==16568==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==16568==    by 0x400911: explode (answer03.c:31)
+==16568==    by 0x400741: main (pa03.c:12)
+==16568== 
+==16568== LEAK SUMMARY:
+==16568==    definitely lost: 32 bytes in 1 blocks
+==16568==    indirectly lost: 26 bytes in 4 blocks
+==16568==      possibly lost: 0 bytes in 0 blocks
+==16568==    still reachable: 0 bytes in 0 blocks
+==16568==         suppressed: 0 bytes in 0 blocks
+==16568== 
+==16568== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)
+--16568-- 
+--16568-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--16568-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==16568== 
+==16568== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)

@@ -1,5 +1,7 @@
 #include "answer03.h"
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 char * strcat_ex(char * * dest, int * n, const char * src)
 {
@@ -24,45 +26,88 @@ char * * explode(const char * str, const char * delims, int * arrLen)
   pos = str;
   while (*pos != '\0') {
     if (strchr(delims, *pos)) (*arrLen)++;
+    pos ++;
   }
-  char **string_list = malloc(*arrLen * sizeof(char *))
-  int index = 0;
+  char **string_list = malloc(*arrLen * sizeof(char *));
+  int ind = 0;
   const char *start = str;
   pos = str;
   while (*pos != '\0') {
     if (strchr(delims, *pos)) {
       int len = pos - start;
-      string_list[index] = malloc((len + 1) * sizeof(char));
-      memcpy(string_list[index], start, len * sizeof(char));
-      string_list[index][len] = '\0';
-      index++;
+      string_list[ind] = malloc((len + 1) * sizeof(char));
+      memcpy(string_list[ind], start, len * sizeof(char));
+      string_list[ind][len] = '\0';
+      ind++;
       start = pos +1;
     }
     pos++;
   }
   int len = pos - start;
-  string_list[index] = malloc((len + 1) * sizeof(char));
-  memcpy(string_list[index], start, len * sizeof(char));
-  string_list[index][len] = '\0';
-  
+  string_list[ind] = malloc((len + 1) * sizeof(char));
+  memcpy(string_list[ind], start, len * sizeof(char));
+  string_list[ind][len] = '\0';
+
   return string_list;
 }
 
 char * implode(char * * strArr, int len, const char * glue)
 {
-  const char * dest;
+  int i;
+  char * str = NULL;
+  int leng = len;
+  size_t tot_len = 0;
   
-  return 0;
+  for (i = 0; i < len; i++) {
+    tot_len += strlen(strArr[i]);
+    tot_len++;
+    tot_len += strlen(glue) * (len -1);
+  }
+  str = (char*)malloc(tot_len);
+  str[0] = '\0';
+  
+  for (i = 0; i < len; i++) {
+    str = strcat_ex(&str, &leng, strArr[i]);
+    if (i< (len-1)) {
+      str = strcat_ex(&str, &leng, glue);
+    }
+  }
+  return (char*) str;
+}
+
+int strcmpvoid(const void *a, const void *b)
+{
+  return strcmp(*(char * const *) a, * (char * const *) b);
 }
 
 void sortStringArray(char * * arrString, int len)
 {
+  qsort(arrString, len, sizeof(char*), strcmpvoid);
 }
 
 void sortStringCharacters(char * str)
 {
+  int i, j, len;
+  char tmp;
+  len = strlen(str);
+  for(i=0; i<len-1;i++) {
+    for(j=i+1; j<len;j++) {
+      if (str[i] > str[j]) {
+	tmp = str[i];
+	str[i] = str[j];
+	str[j] = tmp;
+      }
+    }
+  }
 }
 
 void destroyStringArray(char * * strArr, int len)
 {
+  int i;
+  if (strArr != NULL){
+    for(i = 0; i<len; i++){
+      free(strArr[i]);
+    }
+    free(strArr);
+  }
 }
