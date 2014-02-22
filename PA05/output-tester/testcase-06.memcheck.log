@@ -1,0 +1,103 @@
+==28210== Memcheck, a memory error detector
+==28210== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==28210== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==28210== Command: ./a.out images/bmps/01-smile.bmp student-out-05_01-smile.ee264
+==28210== Parent PID: 28209
+==28210== 
+--28210-- 
+--28210-- Valgrind options:
+--28210--    --tool=memcheck
+--28210--    --leak-check=full
+--28210--    --verbose
+--28210--    --log-file=memcheck-05.log
+--28210-- Contents of /proc/version:
+--28210--   Linux version 2.6.32-431.5.1.el6.x86_64 (mockbuild@x86-002.build.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Fri Jan 10 14:46:43 EST 2014
+--28210-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--28210-- Page sizes: currently 4096, max supported 4096
+--28210-- Valgrind library directory: /usr/lib64/valgrind
+--28210-- Reading syms from /tmp/.lbFZQa/a.out
+--28210-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--28210--    object doesn't have a dynamic symbol table
+--28210-- Reading syms from /lib64/ld-2.12.so
+--28210-- Scheduler: using generic scheduler lock implementation.
+--28210-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==28210== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-28210-by-jang30-on-ecelinux22.ecn.purdue.edu
+==28210== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-28210-by-jang30-on-ecelinux22.ecn.purdue.edu
+==28210== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-28210-by-jang30-on-ecelinux22.ecn.purdue.edu
+==28210== 
+==28210== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==28210== don't want to do, unless you know exactly what you're doing,
+==28210== or are doing some strange experiment):
+==28210==   /usr/lib64/valgrind/../../bin/vgdb --pid=28210 ...command...
+==28210== 
+==28210== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==28210==   /path/to/gdb ./a.out
+==28210== and then give GDB the following command
+==28210==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=28210
+==28210== --pid is optional if only one valgrind process is running
+==28210== 
+--28210-- REDIR: 0x36d8617530 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--28210-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--28210-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--28210-- REDIR: 0x36d86173a0 (index) redirected to 0x4a07bf0 (index)
+--28210-- REDIR: 0x36d8617420 (strcmp) redirected to 0x4a08530 (strcmp)
+--28210-- Reading syms from /lib64/libc-2.12.so
+--28210-- REDIR: 0x36d8a84fb0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--28210-- REDIR: 0x36d8a87270 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--28210-- REDIR: 0x36d8a82f20 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--28210-- REDIR: 0x36d8a7f9c0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--28210-- REDIR: 0x36d8b28590 (__strcmp_sse42) redirected to 0x4a08490 (strcmp)
+--28210-- REDIR: 0x36d8a81400 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--28210-- REDIR: 0x36d8b33860 (__strlen_sse42) redirected to 0x4a07f50 (strlen)
+--28210-- REDIR: 0x36d8a8add0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--28210-- REDIR: 0x36d8a847e0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--28210-- REDIR: 0x36d8a7b800 (free) redirected to 0x4a06369 (free)
+--28210-- REDIR: 0x36d8a7a920 (malloc) redirected to 0x4a0696c (malloc)
+--28210-- REDIR: 0x36d8a89950 (memcpy) redirected to 0x4a08b20 (memcpy)
+--28210-- REDIR: 0x36d8a81440 (__GI_strlen) redirected to 0x4a07f70 (__GI_strlen)
+==28210== Syscall param write(buf) points to uninitialised byte(s)
+==28210==    at 0x36D8ADB790: __write_nocancel (in /lib64/libc-2.12.so)
+==28210==    by 0x36D8A71DD2: _IO_file_write@@GLIBC_2.2.5 (in /lib64/libc-2.12.so)
+==28210==    by 0x36D8A73384: _IO_do_write@@GLIBC_2.2.5 (in /lib64/libc-2.12.so)
+==28210==    by 0x36D8A740F2: _IO_flush_all_lockp (in /lib64/libc-2.12.so)
+==28210==    by 0x36D8A74F9E: _IO_cleanup (in /lib64/libc-2.12.so)
+==28210==    by 0x36D8A35DC1: exit (in /lib64/libc-2.12.so)
+==28210==    by 0x36D8A1ED23: (below main) (in /lib64/libc-2.12.so)
+==28210==  Address 0x4c0f010 is not stack'd, malloc'd or (recently) free'd
+==28210== 
+==28210== 
+==28210== HEAP SUMMARY:
+==28210==     in use at exit: 568 bytes in 1 blocks
+==28210==   total heap usage: 8 allocs, 7 frees, 269,793 bytes allocated
+==28210== 
+==28210== Searching for pointers to 1 not-freed blocks
+==28210== Checked 64,608 bytes
+==28210== 
+==28210== LEAK SUMMARY:
+==28210==    definitely lost: 0 bytes in 0 blocks
+==28210==    indirectly lost: 0 bytes in 0 blocks
+==28210==      possibly lost: 0 bytes in 0 blocks
+==28210==    still reachable: 568 bytes in 1 blocks
+==28210==         suppressed: 0 bytes in 0 blocks
+==28210== Reachable blocks (those to which a pointer was found) are not shown.
+==28210== To see them, rerun with: --leak-check=full --show-reachable=yes
+==28210== 
+==28210== Use --track-origins=yes to see where uninitialised values come from
+==28210== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)
+==28210== 
+==28210== 1 errors in context 1 of 1:
+==28210== Syscall param write(buf) points to uninitialised byte(s)
+==28210==    at 0x36D8ADB790: __write_nocancel (in /lib64/libc-2.12.so)
+==28210==    by 0x36D8A71DD2: _IO_file_write@@GLIBC_2.2.5 (in /lib64/libc-2.12.so)
+==28210==    by 0x36D8A73384: _IO_do_write@@GLIBC_2.2.5 (in /lib64/libc-2.12.so)
+==28210==    by 0x36D8A740F2: _IO_flush_all_lockp (in /lib64/libc-2.12.so)
+==28210==    by 0x36D8A74F9E: _IO_cleanup (in /lib64/libc-2.12.so)
+==28210==    by 0x36D8A35DC1: exit (in /lib64/libc-2.12.so)
+==28210==    by 0x36D8A1ED23: (below main) (in /lib64/libc-2.12.so)
+==28210==  Address 0x4c0f010 is not stack'd, malloc'd or (recently) free'd
+==28210== 
+--28210-- 
+--28210-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--28210-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==28210== 
+==28210== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)

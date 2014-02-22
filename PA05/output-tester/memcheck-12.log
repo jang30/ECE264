@@ -1,0 +1,82 @@
+==10509== Memcheck, a memory error detector
+==10509== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==10509== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==10509== Command: ./a.out images/03-hawkes-bay-NZ.ee264 student-out-12_03-hawkes-bay-NZ.bmp
+==10509== Parent PID: 10508
+==10509== 
+--10509-- 
+--10509-- Valgrind options:
+--10509--    --tool=memcheck
+--10509--    --leak-check=full
+--10509--    --verbose
+--10509--    --log-file=memcheck-12.log
+--10509-- Contents of /proc/version:
+--10509--   Linux version 2.6.32-431.5.1.el6.x86_64 (mockbuild@x86-002.build.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Fri Jan 10 14:46:43 EST 2014
+--10509-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--10509-- Page sizes: currently 4096, max supported 4096
+--10509-- Valgrind library directory: /usr/lib64/valgrind
+--10509-- Reading syms from /tmp/.tbUsgk/a.out
+--10509-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--10509--    object doesn't have a dynamic symbol table
+--10509-- Reading syms from /lib64/ld-2.12.so
+--10509-- Scheduler: using generic scheduler lock implementation.
+--10509-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==10509== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-10509-by-jang30-on-ecelinux22.ecn.purdue.edu
+==10509== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-10509-by-jang30-on-ecelinux22.ecn.purdue.edu
+==10509== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-10509-by-jang30-on-ecelinux22.ecn.purdue.edu
+==10509== 
+==10509== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==10509== don't want to do, unless you know exactly what you're doing,
+==10509== or are doing some strange experiment):
+==10509==   /usr/lib64/valgrind/../../bin/vgdb --pid=10509 ...command...
+==10509== 
+==10509== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==10509==   /path/to/gdb ./a.out
+==10509== and then give GDB the following command
+==10509==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=10509
+==10509== --pid is optional if only one valgrind process is running
+==10509== 
+--10509-- REDIR: 0x36d8617530 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--10509-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--10509-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--10509-- REDIR: 0x36d86173a0 (index) redirected to 0x4a07bf0 (index)
+--10509-- REDIR: 0x36d8617420 (strcmp) redirected to 0x4a08530 (strcmp)
+--10509-- Reading syms from /lib64/libc-2.12.so
+--10509-- REDIR: 0x36d8a84fb0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10509-- REDIR: 0x36d8a87270 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10509-- REDIR: 0x36d8a82f20 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--10509-- REDIR: 0x36d8a7f9c0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10509-- REDIR: 0x36d8b28590 (__strcmp_sse42) redirected to 0x4a08490 (strcmp)
+--10509-- REDIR: 0x36d8a81400 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10509-- REDIR: 0x36d8b33860 (__strlen_sse42) redirected to 0x4a07f50 (strlen)
+--10509-- REDIR: 0x36d8a8add0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--10509-- REDIR: 0x36d8a847e0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--10509-- REDIR: 0x36d8a7b800 (free) redirected to 0x4a06369 (free)
+--10509-- REDIR: 0x36d8a7a920 (malloc) redirected to 0x4a0696c (malloc)
+--10509-- REDIR: 0x36d8a89950 (memcpy) redirected to 0x4a08b20 (memcpy)
+--10509-- REDIR: 0x36d8a81440 (__GI_strlen) redirected to 0x4a07f70 (__GI_strlen)
+--10509-- REDIR: 0x36d8a83c80 (memset) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10509-- REDIR: 0x36d8a83cc0 (__GI_memset) redirected to 0x4a09a10 (memset)
+==10509== 
+==10509== HEAP SUMMARY:
+==10509==     in use at exit: 568 bytes in 1 blocks
+==10509==   total heap usage: 6 allocs, 5 frees, 62,100 bytes allocated
+==10509== 
+==10509== Searching for pointers to 1 not-freed blocks
+==10509== Checked 68,704 bytes
+==10509== 
+==10509== LEAK SUMMARY:
+==10509==    definitely lost: 0 bytes in 0 blocks
+==10509==    indirectly lost: 0 bytes in 0 blocks
+==10509==      possibly lost: 0 bytes in 0 blocks
+==10509==    still reachable: 568 bytes in 1 blocks
+==10509==         suppressed: 0 bytes in 0 blocks
+==10509== Reachable blocks (those to which a pointer was found) are not shown.
+==10509== To see them, rerun with: --leak-check=full --show-reachable=yes
+==10509== 
+==10509== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+--10509-- 
+--10509-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--10509-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==10509== 
+==10509== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)

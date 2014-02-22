@@ -1,0 +1,82 @@
+==8903== Memcheck, a memory error detector
+==8903== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==8903== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==8903== Command: ./a.out images/corrupt-testcases/07-comment-has-no-null-byte.ee264 student-out-21_-
+==8903== Parent PID: 8902
+==8903== 
+--8903-- 
+--8903-- Valgrind options:
+--8903--    --tool=memcheck
+--8903--    --leak-check=full
+--8903--    --verbose
+--8903--    --log-file=memcheck-21.log
+--8903-- Contents of /proc/version:
+--8903--   Linux version 2.6.32-431.5.1.el6.x86_64 (mockbuild@x86-002.build.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Fri Jan 10 14:46:43 EST 2014
+--8903-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--8903-- Page sizes: currently 4096, max supported 4096
+--8903-- Valgrind library directory: /usr/lib64/valgrind
+--8903-- Reading syms from /tmp/.dwiaJQ/a.out
+--8903-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--8903--    object doesn't have a dynamic symbol table
+--8903-- Reading syms from /lib64/ld-2.12.so
+--8903-- Scheduler: using generic scheduler lock implementation.
+--8903-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==8903== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-8903-by-jang30-on-ecelinux22.ecn.purdue.edu
+==8903== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-8903-by-jang30-on-ecelinux22.ecn.purdue.edu
+==8903== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-8903-by-jang30-on-ecelinux22.ecn.purdue.edu
+==8903== 
+==8903== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==8903== don't want to do, unless you know exactly what you're doing,
+==8903== or are doing some strange experiment):
+==8903==   /usr/lib64/valgrind/../../bin/vgdb --pid=8903 ...command...
+==8903== 
+==8903== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==8903==   /path/to/gdb ./a.out
+==8903== and then give GDB the following command
+==8903==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=8903
+==8903== --pid is optional if only one valgrind process is running
+==8903== 
+--8903-- REDIR: 0x36d8617530 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--8903-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--8903-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--8903-- REDIR: 0x36d86173a0 (index) redirected to 0x4a07bf0 (index)
+--8903-- REDIR: 0x36d8617420 (strcmp) redirected to 0x4a08530 (strcmp)
+--8903-- Reading syms from /lib64/libc-2.12.so
+--8903-- REDIR: 0x36d8a84fb0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--8903-- REDIR: 0x36d8a87270 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--8903-- REDIR: 0x36d8a82f20 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--8903-- REDIR: 0x36d8a7f9c0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--8903-- REDIR: 0x36d8b28590 (__strcmp_sse42) redirected to 0x4a08490 (strcmp)
+--8903-- REDIR: 0x36d8a81400 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--8903-- REDIR: 0x36d8b33860 (__strlen_sse42) redirected to 0x4a07f50 (strlen)
+--8903-- REDIR: 0x36d8a8add0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--8903-- REDIR: 0x36d8a847e0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--8903-- REDIR: 0x36d8a7b800 (free) redirected to 0x4a06369 (free)
+--8903-- REDIR: 0x36d8a7a920 (malloc) redirected to 0x4a0696c (malloc)
+--8903-- REDIR: 0x36d8a89950 (memcpy) redirected to 0x4a08b20 (memcpy)
+==8903== 
+==8903== HEAP SUMMARY:
+==8903==     in use at exit: 212 bytes in 3 blocks
+==8903==   total heap usage: 4 allocs, 1 frees, 780 bytes allocated
+==8903== 
+==8903== Searching for pointers to 3 not-freed blocks
+==8903== Checked 64,344 bytes
+==8903== 
+==8903== 212 (24 direct, 188 indirect) bytes in 1 blocks are definitely lost in loss record 3 of 3
+==8903==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==8903==    by 0x400ACD: Image_load (answer05.c:31)
+==8903==    by 0x401B24: main (<stdin>:61)
+==8903== 
+==8903== LEAK SUMMARY:
+==8903==    definitely lost: 24 bytes in 1 blocks
+==8903==    indirectly lost: 188 bytes in 2 blocks
+==8903==      possibly lost: 0 bytes in 0 blocks
+==8903==    still reachable: 0 bytes in 0 blocks
+==8903==         suppressed: 0 bytes in 0 blocks
+==8903== 
+==8903== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)
+--8903-- 
+--8903-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--8903-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==8903== 
+==8903== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)
