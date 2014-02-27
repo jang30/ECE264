@@ -1,0 +1,173 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "answer06.h"
+
+void printPartition(int *partition, int length)
+{
+  int i;
+  printf("\n= ");
+  for (i = 0 ; i < length ; i++) {
+    if (i != 0) printf(" + ");
+    printf("%d", partition[i]);
+  }
+}
+
+void partitionAllHelper(int budget, int *partition, int pos)
+{
+  int spending;
+  if (budget == 0) {
+    printPartition(partition, pos);
+    return;
+  }
+  for (spending = 1; spending <= budget; spending++) {
+    partition[pos] = spending;
+    partitionAllHelper(budget - spending, partition, pos +1);
+  }
+}
+
+void partitionAll(int value)
+{
+  printf("partitionAll(%d)",value);
+  int *partition = malloc(sizeof(int) * value);
+  partitionAllHelper(value, partition,0);
+  printf("\n");
+  free(partition);
+}
+
+void partitionIncreasingHelper(int budget, int *partition, int pos)
+{
+  int spending;
+  if (budget == 0) {
+    printPartition(partition, pos);
+    return;
+  }
+  for (spending = 1; spending <= budget; spending++) {
+    partition[pos] = spending;
+    if (partition[pos] > partition[pos - 1]) {
+      partitionIncreasingHelper(budget - spending, partition, pos+1);
+    }
+  }
+}
+
+void partitionIncreasing(int value)
+{
+  printf("partitionIncreasing(%d)",value);
+  int *partition = malloc(sizeof(int) * value);
+  partitionIncreasingHelper(value, partition ,0);
+  printf("\n");
+  free(partition);
+}
+
+void partitionDecreasingHelper(int budget, int *partition, int pos)
+{
+  int spending;
+  if (budget == 0) {
+    printPartition(partition, pos);
+    return;
+  }
+  for (spending = budget; spending >= 0; spending--) {
+    partition[pos] = spending;
+    if (partition[pos] < partition[pos - 1]) {
+      partitionDecreasingHelper(budget -spending, partition, pos+1);
+    }
+  }
+}
+
+void partitionDecreasing(int value)
+{
+  printf("partitionDecreasing(%d)",value);
+  int *partition = malloc(sizeof(int) * value);
+  partitionDecreasingHelper(value, partition,0);
+  printf("\n");
+  free(partition);
+}
+
+void partitionOddHelper(int budget, int *partition, int pos)
+{
+  int spending;
+  if (budget == 0) {
+    printPartition(partition, pos);
+    return;
+  }
+  for (spending = 1; spending <= budget; spending++) {
+    partition[pos] = spending;
+    if (partition[pos] % 2 != 0) {
+      partitionOddHelper(budget - spending, partition, pos+1);
+    }
+  }
+}
+
+void partitionOdd(int value)
+{
+  printf("partitionOdd(%d)",value);
+  int *partition = malloc(sizeof(int) * value);
+  partitionOddHelper(value, partition,0);
+  printf("\n");
+  free(partition);
+}
+
+void partitionEvenHelper(int budget, int *partition, int pos)
+{
+  int spending;
+  if (budget == 0) {
+    printPartition(partition, pos);
+    return;
+  }
+  for (spending = 1; spending <= budget; spending++) {
+    partition[pos] = spending;
+    if (partition[pos] % 2 == 0) {
+      partitionEvenHelper(budget - spending, partition, pos+1);
+    }
+  }
+}
+
+void partitionEven(int value)
+{
+  printf("partitionEven(%d)",value);
+  int *partition = malloc(sizeof(int) * value);
+  partitionEvenHelper(value, partition,0);
+  printf("\n");
+  free(partition);
+}
+
+void partitionOddAndEven(int value)
+{
+  printf("partitionOddAndEven(%d)",value);
+  int *partition = malloc(sizeof(int) * value);
+  partitionEvenHelper(value, partition,0);
+  printf("\n");
+  free(partition);
+}
+
+int checkPrime(int value)
+{
+  if (value % 2 ==0 || value == 1) {
+    return 0;
+  }
+  return 1; 
+}
+
+void partitionPrimeHelper(int budget, int *partition, int pos)
+{
+  int spending;
+  if (budget == 0) {
+    printPartition(partition, pos);
+    return;
+  }
+  for (spending = 1; spending <= budget; spending++) {
+    partition[pos] = spending;
+    if (checkPrime(partition[pos]) == 1) {
+      partitionPrimeHelper(budget - spending, partition, pos+1);
+    }
+  }
+}
+
+void partitionPrime(int value)
+{
+  printf("partitionPrime(%d)",value);
+  int *partition = malloc(sizeof(int) * value);
+  partitionPrimeHelper(value, partition,0);
+  printf("\n");
+  free(partition);
+}
