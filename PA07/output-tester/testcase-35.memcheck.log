@@ -1,0 +1,97 @@
+==20819== Memcheck, a memory error detector
+==20819== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==20819== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==20819== Command: ./a.out 34
+==20819== Parent PID: 20816
+==20819== 
+--20819-- 
+--20819-- Valgrind options:
+--20819--    --tool=memcheck
+--20819--    --leak-check=full
+--20819--    --verbose
+--20819--    --log-file=memcheck.log
+--20819-- Contents of /proc/version:
+--20819--   Linux version 2.6.32-431.3.1.el6.x86_64 (mockbuild@x86-003.build.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Fri Dec 13 06:58:20 EST 2013
+--20819-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--20819-- Page sizes: currently 4096, max supported 4096
+--20819-- Valgrind library directory: /usr/lib64/valgrind
+--20819-- Reading syms from /tmp/.4xK916/a.out
+--20819-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--20819--    object doesn't have a dynamic symbol table
+--20819-- Reading syms from /lib64/ld-2.12.so
+--20819-- Scheduler: using generic scheduler lock implementation.
+--20819-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==20819== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-20819-by-jang30-on-ecegrid-thin1.ecn.purdue.edu
+==20819== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-20819-by-jang30-on-ecegrid-thin1.ecn.purdue.edu
+==20819== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-20819-by-jang30-on-ecegrid-thin1.ecn.purdue.edu
+==20819== 
+==20819== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==20819== don't want to do, unless you know exactly what you're doing,
+==20819== or are doing some strange experiment):
+==20819==   /usr/lib64/valgrind/../../bin/vgdb --pid=20819 ...command...
+==20819== 
+==20819== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==20819==   /path/to/gdb ./a.out
+==20819== and then give GDB the following command
+==20819==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=20819
+==20819== --pid is optional if only one valgrind process is running
+==20819== 
+--20819-- REDIR: 0x3393817530 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--20819-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--20819-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--20819-- REDIR: 0x33938173a0 (index) redirected to 0x4a07bf0 (index)
+--20819-- REDIR: 0x3393817420 (strcmp) redirected to 0x4a08530 (strcmp)
+--20819-- Reading syms from /lib64/libc-2.12.so
+--20819-- REDIR: 0x3394084fb0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--20819-- REDIR: 0x3394087270 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--20819-- REDIR: 0x3394082f20 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--20819-- REDIR: 0x339407a920 (malloc) redirected to 0x4a0696c (malloc)
+--20819-- REDIR: 0x3394081440 (__GI_strlen) redirected to 0x4a07f70 (__GI_strlen)
+--20819-- REDIR: 0x3394089950 (memcpy) redirected to 0x4a08b20 (memcpy)
+--20819-- REDIR: 0x33940847e0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--20819-- REDIR: 0x339408add0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--20819-- REDIR: 0x339407b800 (free) redirected to 0x4a06369 (free)
+--20819-- REDIR: 0x339407f9c0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--20819-- REDIR: 0x3394128590 (__strcmp_sse42) redirected to 0x4a08490 (strcmp)
+==20819== 
+==20819== HEAP SUMMARY:
+==20819==     in use at exit: 76 bytes in 8 blocks
+==20819==   total heap usage: 21 allocs, 13 frees, 230 bytes allocated
+==20819== 
+==20819== Searching for pointers to 8 not-freed blocks
+==20819== Checked 64,536 bytes
+==20819== 
+==20819== 19 (16 direct, 3 indirect) bytes in 1 blocks are definitely lost in loss record 7 of 8
+==20819==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==20819==    by 0x400B09: List_createNode_sol (<stdin>:19)
+==20819==    by 0x400F46: List_create (test_support_functions.c:48)
+==20819==    by 0x400F63: List_create (test_support_functions.c:49)
+==20819==    by 0x40115D: make_list (test_support_functions.c:78)
+==20819==    by 0x401F75: tests_List_sort (test_List_sort.c:110)
+==20819==    by 0x402175: main (<stdin>:159)
+==20819== 
+==20819== 57 (16 direct, 41 indirect) bytes in 1 blocks are definitely lost in loss record 8 of 8
+==20819==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==20819==    by 0x400B09: List_createNode_sol (<stdin>:19)
+==20819==    by 0x400F46: List_create (test_support_functions.c:48)
+==20819==    by 0x400F63: List_create (test_support_functions.c:49)
+==20819==    by 0x400F63: List_create (test_support_functions.c:49)
+==20819==    by 0x400F63: List_create (test_support_functions.c:49)
+==20819==    by 0x400F63: List_create (test_support_functions.c:49)
+==20819==    by 0x40115D: make_list (test_support_functions.c:78)
+==20819==    by 0x401F75: tests_List_sort (test_List_sort.c:110)
+==20819==    by 0x402175: main (<stdin>:159)
+==20819== 
+==20819== LEAK SUMMARY:
+==20819==    definitely lost: 32 bytes in 2 blocks
+==20819==    indirectly lost: 44 bytes in 6 blocks
+==20819==      possibly lost: 0 bytes in 0 blocks
+==20819==    still reachable: 0 bytes in 0 blocks
+==20819==         suppressed: 0 bytes in 0 blocks
+==20819== 
+==20819== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 6 from 6)
+--20819-- 
+--20819-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--20819-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==20819== 
+==20819== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 6 from 6)

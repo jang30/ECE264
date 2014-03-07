@@ -1,0 +1,96 @@
+==6636== Memcheck, a memory error detector
+==6636== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==6636== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==6636== Command: ./a.out 31
+==6636== Parent PID: 6634
+==6636== 
+--6636-- 
+--6636-- Valgrind options:
+--6636--    --tool=memcheck
+--6636--    --leak-check=full
+--6636--    --verbose
+--6636--    --log-file=memcheck.log
+--6636-- Contents of /proc/version:
+--6636--   Linux version 2.6.32-431.3.1.el6.x86_64 (mockbuild@x86-003.build.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Fri Dec 13 06:58:20 EST 2013
+--6636-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--6636-- Page sizes: currently 4096, max supported 4096
+--6636-- Valgrind library directory: /usr/lib64/valgrind
+--6636-- Reading syms from /tmp/.4xK916/a.out
+--6636-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--6636--    object doesn't have a dynamic symbol table
+--6636-- Reading syms from /lib64/ld-2.12.so
+--6636-- Scheduler: using generic scheduler lock implementation.
+--6636-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==6636== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-6636-by-jang30-on-ecegrid-thin1.ecn.purdue.edu
+==6636== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-6636-by-jang30-on-ecegrid-thin1.ecn.purdue.edu
+==6636== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-6636-by-jang30-on-ecegrid-thin1.ecn.purdue.edu
+==6636== 
+==6636== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==6636== don't want to do, unless you know exactly what you're doing,
+==6636== or are doing some strange experiment):
+==6636==   /usr/lib64/valgrind/../../bin/vgdb --pid=6636 ...command...
+==6636== 
+==6636== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==6636==   /path/to/gdb ./a.out
+==6636== and then give GDB the following command
+==6636==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=6636
+==6636== --pid is optional if only one valgrind process is running
+==6636== 
+--6636-- REDIR: 0x3393817530 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--6636-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--6636-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--6636-- REDIR: 0x33938173a0 (index) redirected to 0x4a07bf0 (index)
+--6636-- REDIR: 0x3393817420 (strcmp) redirected to 0x4a08530 (strcmp)
+--6636-- Reading syms from /lib64/libc-2.12.so
+--6636-- REDIR: 0x3394084fb0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--6636-- REDIR: 0x3394087270 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--6636-- REDIR: 0x3394082f20 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--6636-- REDIR: 0x339407a920 (malloc) redirected to 0x4a0696c (malloc)
+--6636-- REDIR: 0x3394081440 (__GI_strlen) redirected to 0x4a07f70 (__GI_strlen)
+--6636-- REDIR: 0x3394089950 (memcpy) redirected to 0x4a08b20 (memcpy)
+--6636-- REDIR: 0x33940847e0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--6636-- REDIR: 0x339408add0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--6636-- REDIR: 0x339407b800 (free) redirected to 0x4a06369 (free)
+--6636-- REDIR: 0x339407f9c0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--6636-- REDIR: 0x3394128590 (__strcmp_sse42) redirected to 0x4a08490 (strcmp)
+==6636== 
+==6636== HEAP SUMMARY:
+==6636==     in use at exit: 54 bytes in 6 blocks
+==6636==   total heap usage: 17 allocs, 11 frees, 176 bytes allocated
+==6636== 
+==6636== Searching for pointers to 6 not-freed blocks
+==6636== Checked 64,536 bytes
+==6636== 
+==6636== 18 (16 direct, 2 indirect) bytes in 1 blocks are definitely lost in loss record 5 of 6
+==6636==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6636==    by 0x400B09: List_createNode_sol (<stdin>:19)
+==6636==    by 0x400F46: List_create (test_support_functions.c:48)
+==6636==    by 0x400F63: List_create (test_support_functions.c:49)
+==6636==    by 0x401147: make_list (test_support_functions.c:77)
+==6636==    by 0x401F21: tests_List_sort (test_List_sort.c:106)
+==6636==    by 0x402175: main (<stdin>:159)
+==6636== 
+==6636== 36 (16 direct, 20 indirect) bytes in 1 blocks are definitely lost in loss record 6 of 6
+==6636==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6636==    by 0x400B09: List_createNode_sol (<stdin>:19)
+==6636==    by 0x400F46: List_create (test_support_functions.c:48)
+==6636==    by 0x400F63: List_create (test_support_functions.c:49)
+==6636==    by 0x400F63: List_create (test_support_functions.c:49)
+==6636==    by 0x400F63: List_create (test_support_functions.c:49)
+==6636==    by 0x401147: make_list (test_support_functions.c:77)
+==6636==    by 0x401F21: tests_List_sort (test_List_sort.c:106)
+==6636==    by 0x402175: main (<stdin>:159)
+==6636== 
+==6636== LEAK SUMMARY:
+==6636==    definitely lost: 32 bytes in 2 blocks
+==6636==    indirectly lost: 22 bytes in 4 blocks
+==6636==      possibly lost: 0 bytes in 0 blocks
+==6636==    still reachable: 0 bytes in 0 blocks
+==6636==         suppressed: 0 bytes in 0 blocks
+==6636== 
+==6636== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 6 from 6)
+--6636-- 
+--6636-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--6636-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==6636== 
+==6636== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 6 from 6)

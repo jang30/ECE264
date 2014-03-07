@@ -1,0 +1,106 @@
+==11205== Memcheck, a memory error detector
+==11205== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==11205== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==11205== Command: ./a.out 39
+==11205== Parent PID: 11203
+==11205== 
+--11205-- 
+--11205-- Valgrind options:
+--11205--    --tool=memcheck
+--11205--    --leak-check=full
+--11205--    --verbose
+--11205--    --log-file=memcheck.log
+--11205-- Contents of /proc/version:
+--11205--   Linux version 2.6.32-431.3.1.el6.x86_64 (mockbuild@x86-003.build.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Fri Dec 13 06:58:20 EST 2013
+--11205-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--11205-- Page sizes: currently 4096, max supported 4096
+--11205-- Valgrind library directory: /usr/lib64/valgrind
+--11205-- Reading syms from /tmp/.4xK916/a.out
+--11205-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--11205--    object doesn't have a dynamic symbol table
+--11205-- Reading syms from /lib64/ld-2.12.so
+--11205-- Scheduler: using generic scheduler lock implementation.
+--11205-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==11205== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-11205-by-jang30-on-ecegrid-thin1.ecn.purdue.edu
+==11205== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-11205-by-jang30-on-ecegrid-thin1.ecn.purdue.edu
+==11205== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-11205-by-jang30-on-ecegrid-thin1.ecn.purdue.edu
+==11205== 
+==11205== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==11205== don't want to do, unless you know exactly what you're doing,
+==11205== or are doing some strange experiment):
+==11205==   /usr/lib64/valgrind/../../bin/vgdb --pid=11205 ...command...
+==11205== 
+==11205== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==11205==   /path/to/gdb ./a.out
+==11205== and then give GDB the following command
+==11205==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=11205
+==11205== --pid is optional if only one valgrind process is running
+==11205== 
+--11205-- REDIR: 0x3393817530 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--11205-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--11205-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--11205-- REDIR: 0x33938173a0 (index) redirected to 0x4a07bf0 (index)
+--11205-- REDIR: 0x3393817420 (strcmp) redirected to 0x4a08530 (strcmp)
+--11205-- Reading syms from /lib64/libc-2.12.so
+--11205-- REDIR: 0x3394084fb0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--11205-- REDIR: 0x3394087270 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--11205-- REDIR: 0x3394082f20 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--11205-- REDIR: 0x339407a920 (malloc) redirected to 0x4a0696c (malloc)
+--11205-- REDIR: 0x3394081440 (__GI_strlen) redirected to 0x4a07f70 (__GI_strlen)
+--11205-- REDIR: 0x3394089950 (memcpy) redirected to 0x4a08b20 (memcpy)
+--11205-- REDIR: 0x33940847e0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--11205-- REDIR: 0x339408add0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--11205-- REDIR: 0x339407b800 (free) redirected to 0x4a06369 (free)
+--11205-- REDIR: 0x339407f9c0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--11205-- REDIR: 0x3394128590 (__strcmp_sse42) redirected to 0x4a08490 (strcmp)
+==11205== 
+==11205== HEAP SUMMARY:
+==11205==     in use at exit: 117 bytes in 10 blocks
+==11205==   total heap usage: 25 allocs, 15 frees, 332 bytes allocated
+==11205== 
+==11205== Searching for pointers to 10 not-freed blocks
+==11205== Checked 64,536 bytes
+==11205== 
+==11205== 21 (16 direct, 5 indirect) bytes in 1 blocks are definitely lost in loss record 8 of 10
+==11205==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==11205==    by 0x400B09: List_createNode_sol (<stdin>:19)
+==11205==    by 0x400F46: List_create (test_support_functions.c:48)
+==11205==    by 0x400F63: List_create (test_support_functions.c:49)
+==11205==    by 0x400F63: List_create (test_support_functions.c:49)
+==11205==    by 0x401189: make_list (test_support_functions.c:80)
+==11205==    by 0x401FF8: tests_List_sort (test_List_sort.c:117)
+==11205==    by 0x402175: main (<stdin>:159)
+==11205== 
+==11205== 45 (16 direct, 29 indirect) bytes in 1 blocks are definitely lost in loss record 9 of 10
+==11205==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==11205==    by 0x400B09: List_createNode_sol (<stdin>:19)
+==11205==    by 0x400F46: List_create (test_support_functions.c:48)
+==11205==    by 0x401189: make_list (test_support_functions.c:80)
+==11205==    by 0x401FF8: tests_List_sort (test_List_sort.c:117)
+==11205==    by 0x402175: main (<stdin>:159)
+==11205== 
+==11205== 51 (16 direct, 35 indirect) bytes in 1 blocks are definitely lost in loss record 10 of 10
+==11205==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==11205==    by 0x400B09: List_createNode_sol (<stdin>:19)
+==11205==    by 0x400F46: List_create (test_support_functions.c:48)
+==11205==    by 0x400F63: List_create (test_support_functions.c:49)
+==11205==    by 0x400F63: List_create (test_support_functions.c:49)
+==11205==    by 0x400F63: List_create (test_support_functions.c:49)
+==11205==    by 0x400F63: List_create (test_support_functions.c:49)
+==11205==    by 0x401189: make_list (test_support_functions.c:80)
+==11205==    by 0x401FF8: tests_List_sort (test_List_sort.c:117)
+==11205==    by 0x402175: main (<stdin>:159)
+==11205== 
+==11205== LEAK SUMMARY:
+==11205==    definitely lost: 48 bytes in 3 blocks
+==11205==    indirectly lost: 69 bytes in 7 blocks
+==11205==      possibly lost: 0 bytes in 0 blocks
+==11205==    still reachable: 0 bytes in 0 blocks
+==11205==         suppressed: 0 bytes in 0 blocks
+==11205== 
+==11205== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 6 from 6)
+--11205-- 
+--11205-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--11205-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==11205== 
+==11205== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 6 from 6)
