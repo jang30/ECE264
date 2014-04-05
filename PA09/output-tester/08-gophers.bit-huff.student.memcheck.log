@@ -1,0 +1,71 @@
+==2155== Memcheck, a memory error detector
+==2155== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==2155== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==2155== Command: ./student.out b inputs/08-gophers.bit-huff
+==2155== Parent PID: 2154
+==2155== 
+--2155-- 
+--2155-- Valgrind options:
+--2155--    --tool=memcheck
+--2155--    --leak-check=full
+--2155--    --verbose
+--2155--    --log-file=memcheck.log
+--2155-- Contents of /proc/version:
+--2155--   Linux version 2.6.32-431.11.2.el6.x86_64 (mockbuild@x86-027.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Mon Mar 3 13:32:45 EST 2014
+--2155-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--2155-- Page sizes: currently 4096, max supported 4096
+--2155-- Valgrind library directory: /usr/lib64/valgrind
+--2155-- Reading syms from /tmp/.be7l6M/student.out
+--2155-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--2155--    object doesn't have a dynamic symbol table
+--2155-- Reading syms from /lib64/ld-2.12.so
+--2155-- Scheduler: using generic scheduler lock implementation.
+--2155-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==2155== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-2155-by-jang30-on-ecelinux45.ecn.purdue.edu
+==2155== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-2155-by-jang30-on-ecelinux45.ecn.purdue.edu
+==2155== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-2155-by-jang30-on-ecelinux45.ecn.purdue.edu
+==2155== 
+==2155== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==2155== don't want to do, unless you know exactly what you're doing,
+==2155== or are doing some strange experiment):
+==2155==   /usr/lib64/valgrind/../../bin/vgdb --pid=2155 ...command...
+==2155== 
+==2155== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==2155==   /path/to/gdb ./student.out
+==2155== and then give GDB the following command
+==2155==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=2155
+==2155== --pid is optional if only one valgrind process is running
+==2155== 
+--2155-- REDIR: 0x33f0617530 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--2155-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--2155-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--2155-- REDIR: 0x33f06173a0 (index) redirected to 0x4a07bf0 (index)
+--2155-- REDIR: 0x33f0617420 (strcmp) redirected to 0x4a08530 (strcmp)
+--2155-- Reading syms from /lib64/libc-2.12.so
+--2155-- REDIR: 0x33f0a84fb0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--2155-- REDIR: 0x33f0a87270 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--2155-- REDIR: 0x33f0a82f20 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--2155-- REDIR: 0x33f0a7f9c0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--2155-- REDIR: 0x33f0b28590 (__strcmp_sse42) redirected to 0x4a08490 (strcmp)
+--2155-- REDIR: 0x33f0a8add0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--2155-- REDIR: 0x33f0a847e0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--2155-- REDIR: 0x33f0a7b800 (free) redirected to 0x4a06369 (free)
+--2155-- REDIR: 0x33f0a7a920 (malloc) redirected to 0x4a0696c (malloc)
+--2155-- REDIR: 0x33f0a89950 (memcpy) redirected to 0x4a08b20 (memcpy)
+--2155-- REDIR: 0x33f0a81440 (__GI_strlen) redirected to 0x4a07f70 (__GI_strlen)
+--2155-- REDIR: 0x33f0a7a560 (calloc) redirected to 0x4a056d7 (calloc)
+--2155-- REDIR: 0x33f0a81400 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--2155-- REDIR: 0x33f0b33860 (__strlen_sse42) redirected to 0x4a07f50 (strlen)
+==2155== 
+==2155== HEAP SUMMARY:
+==2155==     in use at exit: 0 bytes in 0 blocks
+==2155==   total heap usage: 66 allocs, 66 frees, 1,730 bytes allocated
+==2155== 
+==2155== All heap blocks were freed -- no leaks are possible
+==2155== 
+==2155== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+--2155-- 
+--2155-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--2155-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==2155== 
+==2155== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
