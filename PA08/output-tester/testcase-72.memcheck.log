@@ -1,0 +1,2445 @@
+==6209== Memcheck, a memory error detector
+==6209== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==6209== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==6209== Command: ./a.out 71
+==6209== Parent PID: 6208
+==6209== 
+--6209-- 
+--6209-- Valgrind options:
+--6209--    --tool=memcheck
+--6209--    --leak-check=full
+--6209--    --verbose
+--6209--    --log-file=memcheck.log
+--6209-- Contents of /proc/version:
+--6209--   Linux version 2.6.32-431.3.1.el6.x86_64 (mockbuild@x86-003.build.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Fri Dec 13 06:58:20 EST 2013
+--6209-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--6209-- Page sizes: currently 4096, max supported 4096
+--6209-- Valgrind library directory: /usr/lib64/valgrind
+--6209-- Reading syms from /tmp/.kGTywq/a.out
+--6209-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--6209--    object doesn't have a dynamic symbol table
+--6209-- Reading syms from /lib64/ld-2.12.so
+--6209-- Scheduler: using generic scheduler lock implementation.
+--6209-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==6209== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-6209-by-jang30-on-ecegrid-thin2.ecn.purdue.edu
+==6209== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-6209-by-jang30-on-ecegrid-thin2.ecn.purdue.edu
+==6209== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-6209-by-jang30-on-ecegrid-thin2.ecn.purdue.edu
+==6209== 
+==6209== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==6209== don't want to do, unless you know exactly what you're doing,
+==6209== or are doing some strange experiment):
+==6209==   /usr/lib64/valgrind/../../bin/vgdb --pid=6209 ...command...
+==6209== 
+==6209== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==6209==   /path/to/gdb ./a.out
+==6209== and then give GDB the following command
+==6209==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=6209
+==6209== --pid is optional if only one valgrind process is running
+==6209== 
+--6209-- REDIR: 0x33b2017530 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--6209-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--6209-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--6209-- REDIR: 0x33b20173a0 (index) redirected to 0x4a07bf0 (index)
+--6209-- REDIR: 0x33b2017420 (strcmp) redirected to 0x4a08530 (strcmp)
+--6209-- Reading syms from /lib64/libc-2.12.so
+--6209-- REDIR: 0x33b2884fb0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--6209-- REDIR: 0x33b2887270 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--6209-- REDIR: 0x33b2882f20 (__GI_strrchr) redirected to 0x4a07a70 (__GI_strrchr)
+--6209-- REDIR: 0x33b288add0 (strchrnul) redirected to 0x4a09f10 (strchrnul)
+--6209-- REDIR: 0x33b28847e0 (mempcpy) redirected to 0x4a09f80 (mempcpy)
+--6209-- REDIR: 0x33b287b800 (free) redirected to 0x4a06369 (free)
+--6209-- REDIR: 0x33b287a920 (malloc) redirected to 0x4a0696c (malloc)
+--6209-- REDIR: 0x33b2881440 (__GI_strlen) redirected to 0x4a07f70 (__GI_strlen)
+==6209== Invalid read of size 4
+==6209==    at 0x400B00: SparseArray_copy (answer08.c:124)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39ca0 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x400B0C: SparseArray_copy (answer08.c:125)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39ca4 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400B1A: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39ca8 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400B32: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39cb0 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x400B00: SparseArray_copy (answer08.c:124)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d00 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x400B0C: SparseArray_copy (answer08.c:125)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d04 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400B1A: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d08 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x400B00: SparseArray_copy (answer08.c:124)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d60 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x400B0C: SparseArray_copy (answer08.c:125)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d64 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400B1A: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d68 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400B32: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d70 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x400B00: SparseArray_copy (answer08.c:124)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39dc0 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x400B0C: SparseArray_copy (answer08.c:125)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39dc4 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400B1A: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39dc8 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400B32: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39dd0 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400B32: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d10 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x400B00: SparseArray_copy (answer08.c:124)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3a720 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x400B0C: SparseArray_copy (answer08.c:125)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3a724 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400B1A: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3a728 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400B32: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3a730 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x40147F: print_array (test_support_functions.c:107)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b324 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x401486: print_array (test_support_functions.c:107)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b320 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x4014A0: print_array (test_support_functions.c:108)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b320 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x4014AF: print_array (test_support_functions.c:108)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b324 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x4014C6: print_array (test_support_functions.c:109)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b330 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x4014EB: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b330 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x40147F: print_array (test_support_functions.c:107)
+==6209==    by 0x4014F8: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b384 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x401486: print_array (test_support_functions.c:107)
+==6209==    by 0x4014F8: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b380 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x4014A0: print_array (test_support_functions.c:108)
+==6209==    by 0x4014F8: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b380 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x4014AF: print_array (test_support_functions.c:108)
+==6209==    by 0x4014F8: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b384 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x4014C6: print_array (test_support_functions.c:109)
+==6209==    by 0x4014F8: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b390 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x401509: print_array (test_support_functions.c:116)
+==6209==    by 0x4014F8: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b388 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x401509: print_array (test_support_functions.c:116)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b328 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x4011A8: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x401285: SparseNode_compare (test_support_functions.c:26)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b328 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x4011BB: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x401285: SparseNode_compare (test_support_functions.c:26)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b330 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x4011A8: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011C6: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x401285: SparseNode_compare (test_support_functions.c:26)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b388 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x4011BB: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011C6: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x401285: SparseNode_compare (test_support_functions.c:26)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b390 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x4011F0: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b328 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x401212: SparseNode_toArrayHelper (test_support_functions.c:17)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b320 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x401221: SparseNode_toArrayHelper (test_support_functions.c:18)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b324 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x40124E: SparseNode_toArrayHelper (test_support_functions.c:21)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b330 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x4011F0: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401264: SparseNode_toArrayHelper (test_support_functions.c:21)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b388 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x401212: SparseNode_toArrayHelper (test_support_functions.c:17)
+==6209==    by 0x401264: SparseNode_toArrayHelper (test_support_functions.c:21)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b380 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 4
+==6209==    at 0x401221: SparseNode_toArrayHelper (test_support_functions.c:18)
+==6209==    by 0x401264: SparseNode_toArrayHelper (test_support_functions.c:21)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b384 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x40124E: SparseNode_toArrayHelper (test_support_functions.c:21)
+==6209==    by 0x401264: SparseNode_toArrayHelper (test_support_functions.c:21)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b390 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400D85: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x402DF5: tests_SparseArray_merge (test_SparseArray_merge.c:97)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b328 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400D95: SparseArray_destroy_sol (<stdin>:49)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x402DF5: tests_SparseArray_merge (test_SparseArray_merge.c:97)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b330 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400D85: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400DA0: SparseArray_destroy_sol (<stdin>:49)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x402DF5: tests_SparseArray_merge (test_SparseArray_merge.c:97)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b388 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid read of size 8
+==6209==    at 0x400D95: SparseArray_destroy_sol (<stdin>:49)
+==6209==    by 0x400DA0: SparseArray_destroy_sol (<stdin>:49)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x402DF5: tests_SparseArray_merge (test_SparseArray_merge.c:97)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b390 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid free() / delete / delete[] / realloc()
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400DAC: SparseArray_destroy_sol (<stdin>:50)
+==6209==    by 0x400DA0: SparseArray_destroy_sol (<stdin>:49)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x402DF5: tests_SparseArray_merge (test_SparseArray_merge.c:97)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b380 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== Invalid free() / delete / delete[] / realloc()
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400DAC: SparseArray_destroy_sol (<stdin>:50)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x402DF5: tests_SparseArray_merge (test_SparseArray_merge.c:97)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b320 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== HEAP SUMMARY:
+==6209==     in use at exit: 1,032 bytes in 43 blocks
+==6209==   total heap usage: 100 allocs, 59 frees, 2,464 bytes allocated
+==6209== 
+==6209== Searching for pointers to 43 not-freed blocks
+==6209== Checked 64,536 bytes
+==6209== 
+==6209== 24 bytes in 1 blocks are definitely lost in loss record 27 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400AF7: SparseArray_copy (answer08.c:123)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 24 bytes in 1 blocks are definitely lost in loss record 28 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400BA5: SparseArray_merge (answer08.c:138)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 24 bytes in 1 blocks are definitely lost in loss record 29 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400BA5: SparseArray_merge (answer08.c:138)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 24 bytes in 1 blocks are definitely lost in loss record 30 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400BA5: SparseArray_merge (answer08.c:138)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 24 bytes in 1 blocks are definitely lost in loss record 31 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400BA5: SparseArray_merge (answer08.c:138)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 24 bytes in 1 blocks are definitely lost in loss record 32 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400BA5: SparseArray_merge (answer08.c:138)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 24 bytes in 1 blocks are definitely lost in loss record 33 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400BA5: SparseArray_merge (answer08.c:138)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 24 bytes in 1 blocks are definitely lost in loss record 34 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400BA5: SparseArray_merge (answer08.c:138)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 24 bytes in 1 blocks are definitely lost in loss record 35 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400AF7: SparseArray_copy (answer08.c:123)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 24 bytes in 1 blocks are definitely lost in loss record 36 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400BA5: SparseArray_merge (answer08.c:138)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 24 bytes in 1 blocks are definitely lost in loss record 37 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400BA5: SparseArray_merge (answer08.c:138)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 96 (24 direct, 72 indirect) bytes in 1 blocks are definitely lost in loss record 38 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400AF7: SparseArray_copy (answer08.c:123)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 96 (24 direct, 72 indirect) bytes in 1 blocks are definitely lost in loss record 39 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400AF7: SparseArray_copy (answer08.c:123)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 120 (24 direct, 96 indirect) bytes in 1 blocks are definitely lost in loss record 40 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400AF7: SparseArray_copy (answer08.c:123)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 120 (24 direct, 96 indirect) bytes in 1 blocks are definitely lost in loss record 41 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400AF7: SparseArray_copy (answer08.c:123)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 144 (24 direct, 120 indirect) bytes in 1 blocks are definitely lost in loss record 42 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400AF7: SparseArray_copy (answer08.c:123)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 192 (24 direct, 168 indirect) bytes in 1 blocks are definitely lost in loss record 43 of 43
+==6209==    at 0x4A069EE: malloc (vg_replace_malloc.c:270)
+==6209==    by 0x400AF7: SparseArray_copy (answer08.c:123)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== LEAK SUMMARY:
+==6209==    definitely lost: 408 bytes in 17 blocks
+==6209==    indirectly lost: 624 bytes in 26 blocks
+==6209==      possibly lost: 0 bytes in 0 blocks
+==6209==    still reachable: 0 bytes in 0 blocks
+==6209==         suppressed: 0 bytes in 0 blocks
+==6209== 
+==6209== ERROR SUMMARY: 68 errors from 68 contexts (suppressed: 6 from 6)
+==6209== 
+==6209== 1 errors in context 1 of 68:
+==6209== Invalid free() / delete / delete[] / realloc()
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400DAC: SparseArray_destroy_sol (<stdin>:50)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x402DF5: tests_SparseArray_merge (test_SparseArray_merge.c:97)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b320 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 2 of 68:
+==6209== Invalid free() / delete / delete[] / realloc()
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400DAC: SparseArray_destroy_sol (<stdin>:50)
+==6209==    by 0x400DA0: SparseArray_destroy_sol (<stdin>:49)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x402DF5: tests_SparseArray_merge (test_SparseArray_merge.c:97)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b380 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 3 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400D95: SparseArray_destroy_sol (<stdin>:49)
+==6209==    by 0x400DA0: SparseArray_destroy_sol (<stdin>:49)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x402DF5: tests_SparseArray_merge (test_SparseArray_merge.c:97)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b390 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 4 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400D85: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400DA0: SparseArray_destroy_sol (<stdin>:49)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x402DF5: tests_SparseArray_merge (test_SparseArray_merge.c:97)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b388 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 5 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400D95: SparseArray_destroy_sol (<stdin>:49)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x402DF5: tests_SparseArray_merge (test_SparseArray_merge.c:97)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b330 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 6 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400D85: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x400D90: SparseArray_destroy_sol (<stdin>:48)
+==6209==    by 0x402DF5: tests_SparseArray_merge (test_SparseArray_merge.c:97)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b328 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 7 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x40124E: SparseNode_toArrayHelper (test_support_functions.c:21)
+==6209==    by 0x401264: SparseNode_toArrayHelper (test_support_functions.c:21)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b390 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 8 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x401221: SparseNode_toArrayHelper (test_support_functions.c:18)
+==6209==    by 0x401264: SparseNode_toArrayHelper (test_support_functions.c:21)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b384 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 9 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x401212: SparseNode_toArrayHelper (test_support_functions.c:17)
+==6209==    by 0x401264: SparseNode_toArrayHelper (test_support_functions.c:21)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b380 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 10 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x4011F0: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401264: SparseNode_toArrayHelper (test_support_functions.c:21)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b388 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 11 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x40124E: SparseNode_toArrayHelper (test_support_functions.c:21)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b330 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 12 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x401221: SparseNode_toArrayHelper (test_support_functions.c:18)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b324 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 13 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x401212: SparseNode_toArrayHelper (test_support_functions.c:17)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b320 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 14 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x4011F0: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401206: SparseNode_toArrayHelper (test_support_functions.c:16)
+==6209==    by 0x401312: SparseNode_compare (test_support_functions.c:37)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b328 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 15 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x4011BB: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011C6: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x401285: SparseNode_compare (test_support_functions.c:26)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b390 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 16 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x4011A8: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011C6: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x401285: SparseNode_compare (test_support_functions.c:26)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b388 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 17 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x4011BB: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x401285: SparseNode_compare (test_support_functions.c:26)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b330 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 18 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x4011A8: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x4011B3: SparseNode_size (test_support_functions.c:9)
+==6209==    by 0x401285: SparseNode_compare (test_support_functions.c:26)
+==6209==    by 0x401414: cmp_array (test_support_functions.c:66)
+==6209==    by 0x402D9E: tests_SparseArray_merge (test_SparseArray_merge.c:82)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b328 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 19 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x401509: print_array (test_support_functions.c:116)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b328 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 20 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x401509: print_array (test_support_functions.c:116)
+==6209==    by 0x4014F8: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b388 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 21 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x4014C6: print_array (test_support_functions.c:109)
+==6209==    by 0x4014F8: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b390 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 22 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x4014AF: print_array (test_support_functions.c:108)
+==6209==    by 0x4014F8: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b384 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 23 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x4014A0: print_array (test_support_functions.c:108)
+==6209==    by 0x4014F8: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b380 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 24 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x401486: print_array (test_support_functions.c:107)
+==6209==    by 0x4014F8: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b380 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 25 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x40147F: print_array (test_support_functions.c:107)
+==6209==    by 0x4014F8: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b384 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 26 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x4014EB: print_array (test_support_functions.c:111)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b330 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 27 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x4014C6: print_array (test_support_functions.c:109)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b330 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 28 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x4014AF: print_array (test_support_functions.c:108)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b324 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 29 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x4014A0: print_array (test_support_functions.c:108)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b320 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 30 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x401486: print_array (test_support_functions.c:107)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b320 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 31 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x40147F: print_array (test_support_functions.c:107)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x40155A: print_array (test_support_functions.c:122)
+==6209==    by 0x402D66: tests_SparseArray_merge (test_SparseArray_merge.c:77)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3b324 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 32 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400B32: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3a730 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 33 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400B1A: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3a728 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 34 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x400B0C: SparseArray_copy (answer08.c:125)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3a724 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 35 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x400B00: SparseArray_copy (answer08.c:124)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c3a720 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 36 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400B32: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d10 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 37 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400B32: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39dd0 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 38 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400B1A: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39dc8 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 39 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x400B0C: SparseArray_copy (answer08.c:125)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39dc4 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 40 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x400B00: SparseArray_copy (answer08.c:124)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39dc0 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 41 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400B32: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d70 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 42 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400B1A: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d68 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 43 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x400B0C: SparseArray_copy (answer08.c:125)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d64 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 44 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x400B00: SparseArray_copy (answer08.c:124)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d60 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400855: SparseArray_destroy (answer08.c:46)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 45 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400B1A: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d08 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 46 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x400B0C: SparseArray_copy (answer08.c:125)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d04 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 47 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x400B00: SparseArray_copy (answer08.c:124)
+==6209==    by 0x400B3D: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39d00 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400865: SparseArray_destroy (answer08.c:47)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 48 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400B32: SparseArray_copy (answer08.c:127)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39cb0 is 16 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 49 of 68:
+==6209== Invalid read of size 8
+==6209==    at 0x400B1A: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39ca8 is 8 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 50 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x400B0C: SparseArray_copy (answer08.c:125)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39ca4 is 4 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+==6209== 
+==6209== 1 errors in context 51 of 68:
+==6209== Invalid read of size 4
+==6209==    at 0x400B00: SparseArray_copy (answer08.c:124)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B25: SparseArray_copy (answer08.c:126)
+==6209==    by 0x400B87: SparseArray_merge (answer08.c:136)
+==6209==    by 0x400BF3: SparseArray_merge (answer08.c:142)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209==  Address 0x4c39ca0 is 0 bytes inside a block of size 24 free'd
+==6209==    at 0x4A063F0: free (vg_replace_malloc.c:446)
+==6209==    by 0x400871: SparseArray_destroy (answer08.c:48)
+==6209==    by 0x400C03: SparseArray_merge (answer08.c:143)
+==6209==    by 0x400BD8: SparseArray_merge (answer08.c:141)
+==6209==    by 0x402D47: tests_SparseArray_merge (test_SparseArray_merge.c:75)
+==6209==    by 0x402F48: main (<stdin>:241)
+==6209== 
+--6209-- 
+--6209-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--6209-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==6209== 
+==6209== ERROR SUMMARY: 68 errors from 68 contexts (suppressed: 6 from 6)
